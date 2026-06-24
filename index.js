@@ -16,4 +16,22 @@ function computerPlay() {
     }
     return value;
 }   
-computerPlay()
+
+function playerPlay() {
+    let playerSelection = prompt("Choose rock, paper, or scissors:").toLowerCase();
+    return playerSelection;
+}
+
+function playRound(playerSelection, computerSelection) {
+    if (playerSelection === computerSelection) {
+        return "It's a tie!";
+    } else if (
+        (playerSelection === "rock" && computerSelection === "scissors") ||
+        (playerSelection === "paper" && computerSelection === "rock") ||
+        (playerSelection === "scissors" && computerSelection === "paper")
+    ) {
+        return `You win! ${playerSelection} beats ${computerSelection}`;
+    } else {
+        return `You lose! ${computerSelection} beats ${playerSelection}`;
+    }
+}
