@@ -41,4 +41,24 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-console.log(playRound(playerPlay(), computerPlay()));
+//pause function to use with async/await
+const pause = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+//asynchronous function that allows pausing at each round
+async function game() {
+
+    for (let round = 0; round < 5; round++) {
+        const playerSelection = playerPlay();
+        const computerSelection = computerPlay();
+        const result = playRound(playerSelection, computerSelection);
+
+        console.log(`\n— Round ${round+1} —`);
+        console.log(`You: ${playerSelection}  |  Computer: ${computerSelection}`);
+        console.log(result);
+
+        await pause(1800);
+    }
+
+}
+
+game();
