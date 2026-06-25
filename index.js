@@ -15,6 +15,7 @@ function computerPlay() {
             break;
     }
     return value;
+    console.log(value);
 }   
 
 function playerPlay() {
@@ -35,3 +36,5 @@ function playRound(playerSelection, computerSelection) {
         return `You lose! ${computerSelection} beats ${playerSelection}`;
     }
 }
+
+console.log(playRound(playerPlay(), computerPlay()));
