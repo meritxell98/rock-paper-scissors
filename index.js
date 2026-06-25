@@ -18,7 +18,14 @@ function computerPlay() {
 }   
 
 function playerPlay() {
-    let playerSelection = prompt("Choose rock, paper, or scissors:").toLowerCase();
+    let playerSelection = prompt("Choose rock, paper, or scissors:");
+
+    if (playerSelection === null) {
+        alert("You must play the game to continue.");
+        return playerPlay(); 
+    }
+
+    playerSelection = playerSelection.toLowerCase();
 
      if (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
         alert("Invalid answer. Please choose rock, paper, or scissors.");
