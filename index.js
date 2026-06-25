@@ -15,7 +15,6 @@ function computerPlay() {
             break;
     }
     return value;
-    console.log(value);
 }   
 
 function playerPlay() {
