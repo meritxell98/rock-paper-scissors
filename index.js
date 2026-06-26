@@ -61,24 +61,33 @@ function game() {
     let playerWins = 0;
     let computerWins = 0;
 
-    while (playerWins < 3 && computerWins < 3) {
-        const round = playRound(playerPlay(), computerPlay());
+    for (let round = 1; round <= 5; round++) {
+        console.log(`Round ${round}`);
 
-        console.log(round.message);
+        const result = playRound(playerPlay(), computerPlay());
 
-        if (round.result === "win") {
+        console.log(result.message);
+
+        if (result.result === "win") {
             playerWins++;
-        } else if (round.result === "lose") {
+        } else if (result.result === "lose") {
             computerWins++;
         }
 
         console.log(`Player: ${playerWins} | Computer: ${computerWins}`);
+
+        // End early if someone reaches 3 wins
+        if (playerWins === 3 || computerWins === 3) {
+            break;
+        }
     }
 
-    if (playerWins === 3) {
+    if (playerWins > computerWins) {
         console.log("🎉 You won the game!");
-    } else {
+    } else if (computerWins > playerWins) {
         console.log("💻 Computer won the game!");
+    } else {
+        console.log("🤝 The game ended in a tie!");
     }
 }
 
