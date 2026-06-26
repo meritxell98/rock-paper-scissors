@@ -27,7 +27,7 @@ function playerPlay() {
 
     playerSelection = playerSelection.toLowerCase();
 
-     if (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
+     if (playerSelection.trim() !== "rock" && playerSelection.trim() !== "paper" && playerSelection.trim() !== "scissors") {
         alert("Invalid answer. Please choose rock, paper, or scissors.");
         return playerPlay(); 
     }
@@ -36,16 +36,50 @@ function playerPlay() {
 
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-        return "It's a tie!";
+        return {
+            result: "tie",
+            message: "It's a tie!"
+        };
     } else if (
         (playerSelection === "rock" && computerSelection === "scissors") ||
         (playerSelection === "paper" && computerSelection === "rock") ||
         (playerSelection === "scissors" && computerSelection === "paper")
     ) {
-        return `You win! ${playerSelection} beats ${computerSelection}`;
+        return {
+            result: "win",
+            message: `You win! ${playerSelection} beats ${computerSelection}`
+        };
     } else {
-        return `You lose! ${computerSelection} beats ${playerSelection}`;
+        return {
+            result: "lose",
+            message: `You lose! ${computerSelection} beats ${playerSelection}`
+        };
     }
 }
 
-console.log(playRound(playerPlay(), computerPlay()));
+function game() {
+    let playerWins = 0;
+    let computerWins = 0;
+
+    while (playerWins < 3 && computerWins < 3) {
+        const round = playRound(playerPlay(), computerPlay());
+
+        console.log(round.message);
+
+        if (round.result === "win") {
+            playerWins++;
+        } else if (round.result === "lose") {
+            computerWins++;
+        }
+
+        console.log(`Player: ${playerWins} | Computer: ${computerWins}`);
+    }
+
+    if (playerWins === 3) {
+        console.log("🎉 You won the game!");
+    } else {
+        console.log("💻 Computer won the game!");
+    }
+}
+
+game()
