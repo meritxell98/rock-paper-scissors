@@ -10,11 +10,6 @@
     function playerPlay() {
         let playerSelection = prompt("Choose rock, paper, or scissors:");
 
-        if (playerSelection === null) {
-            alert("You must play the game to continue.");
-            return playerPlay(); 
-        }
-
         playerSelection = playerSelection.toLowerCase().trim();
 
 
